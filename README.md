@@ -1,46 +1,171 @@
-# Getting Started with Create React App
+# Atlas Functional Components
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Тестовое задание для компании Атлас, в рамках которого были разработаны функциональные компоненты: кнопки, табы, поля ввода и счетчик. Все компоненты являются управляемыми, состояния вынесены во внешнее хранилище, реализованное с Redux Toolkit. Сборка прозводилась с поомщью Webpack (конфиг от CRA).
 
-## Available Scripts
+Использованные технологии: HTML, SASS, React, Redux Toolkit, TypeScript, Webpack.
 
-In the project directory, you can run:
+## Использование
 
-### `npm start`
+### Tabs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Компонент Tabs реализует табы, включает в себя следующие атрибуты:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+| Атрибут  |                Тип                 |                                Описание                                 |
+| :------: | :--------------------------------: | :---------------------------------------------------------------------: |
+|   data   | `<{label: string; id: string;}>[]` |        Массив объектов, содержащих в себе id таба и его значение        |
+|  value   |              `string`              |                            Id активного таба                            |
+| onChange |     `(newId: string) => void`      | Функция для переопределения активного таба, принимает новое значение id |
+| variant  |     `"primary" \| "secondary"`     |                         Вариант стилизации таба                         |
+|  styles  |       `React.CSSProperties`        |           Необязательный параметр, для переопределения стилей           |
 
-### `npm test`
+#### Пример:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+<Tabs
+  data={components}
+  value={activeTab}
+  onChange={(newId) => dispatch(setActiveTab(newId))}
+  variant="secondary"
+/>
+```
+
+### Button
+
+Компонент, реализующий кнопки. Может отображаться в различных визуальных стилях (`primary` и `secondary`), а также с эффектом недоступности (`disabled`) заполняющейся шкалы (`progress`) и фильтров (`filter`). включает в себя следующие атрибуты:
+
+|   Атрибут    |                                       Тип                                        |                                                       Описание                                                       |
+| :----------: | :------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------: |
+|   variant    | `"primary" \| "secondary" \| "round-primary" \| "round-secondary" \| "progress"` |                                                 Параметр стилизации                                                  |
+|   subtitle   |                                     `string`                                     |                                        Подзаголовок, необязательный параметр                                         |
+|   progress   |                                    `boolean`                                     |      Необязательный параметр, создающий экземпляр кнопки с эффектом заполняющейся шкалы (прогресс в секундах).       |
+|    filter    |                                    `boolean`                                     |                        Необязательный параметр, создающий экземпляр кнопки с эффектом фильтра                        |
+|   throbber   |                                    `boolean`                                     |                       Необязательный параметр, создающий экземпляр кнопки с эффектом загрузки                        |
+|   disabled   |                                    `boolean`                                     |                     Необязательный параметр, создающий экземпляр кнопки с эффектом недоступности                     |
+|    value     |                                     `number`                                     |         Необязательный параметр, текущее значение заполненной шкалы для соответствующей кнопки (в секундах)          |
+|    total     |                                     `number`                                     |             Необязательный параметр, максимальное значение шкалы для соответствующей кнопки (в секундах)             |
+|   filters    |                                     `number`                                     |                Необязательный параметр, текущее значение активных фильтров для соответствующей кнопки                |
+| clickHandler |                                   `() => void`                                   | Необязательный параметр, функция, запускаемая при клике на кнопку. Для кнопок `disabled` и `throbber` не запускается |
+|    styles    |                              `React.CSSProperties`                               |                                 Необязательный параметр, для переопределения стилей                                  |
+
+#### Примеры:
+
+```jsx
+  <Button
+    variant={variant}
+    subtitle="Подзаголовок"
+    disabled
+  >
+    Заголовок
+  </Button>
+
+  <Button
+    variant="progress"
+    progress
+    value={progress}
+    total={TOTAL_PROGRESS}
+  >
+    Заголовок
+  </Button>
+
+  <Button
+    variant={variant}
+    filter
+    filters={1}
+  >
+    Фильтры
+  </Button>
+```
+
+### Input
+
+Компонент, реализующий управляемое поле ввода, поддерживвает валидацию. Может отображаться в различных визуальных стилях (`primary` и `secondary`), а также с эффектом недоступности (`disabled`). Включает в себя следующие атрибуты:
+
+|    Атрибут     |                   Тип                    |                                         Описание                                          |
+| :------------: | :--------------------------------------: | :---------------------------------------------------------------------------------------: |
+|    variant     |       `"primary" \| "secondary" `        |                                    Параметр стилизации                                    |
+|     value      |                 `string`                 |                                     Текущее значение                                      |
+|    onChange    | `Dispatch<React.SetStateAction<string>>` |      Функция, запускаемая при изменении значения и переопределяющая текущее значение      |
+|  placeholder   |                 `string`                 |                        Плейсхолдер инпута, необязательный параметр                        |
+|     label      |                 `string`                 |       Необязательный параметр, отображающий поле для инпута с `variant="secondary"`       |
+|    disabled    |                `boolean`                 |       Необязательный параметр, создающий экземпляр инпута с эффектом недоступности        |
+|  validations   |     `<(value: string) => boolean>[]`     | Необязательный параметр, содержащий в себе массив функций для валидации текущего значения |
+|  errorMessage  |                 `string`                 |           Необязательный параметр, сообщение выводимой при неудачной валидации            |
+| successMessage |                 `string`                 |            Необязательный параметр, сообщение выводимой при удачной валидации             |
+|     styles     |          `React.CSSProperties`           |                    Необязательный параметр, для переопределения стилей                    |
+
+#### Примеры:
+
+```jsx
+  <Input
+    variant={variant}
+    placeholder="Текст"
+    value={value}
+    onChange={setValue}
+    label="Custom"
+  />
+
+  <Input
+    variant={variant}
+    placeholder="Текст"
+    value={value}
+    onChange={setValue}
+    validations={validations}
+    errorMessage="Ошибка: Подпись к полю"
+    successMessage="Успех: Подпись к полю"
+  />
+
+  <Input
+    variant={variant}
+    placeholder="Текст"
+    value={valueDisabled}
+    onChange={setValueDisabled}
+    disabled
+  />
+```
+
+### Counter
+
+Компонент, реализующий управляемый счётчик, включает в себя следующие атрибуты:
+
+|  Атрибут   |          Тип          |                      Описание                       |
+| :--------: | :-------------------: | :-------------------------------------------------: |
+|   label    |      `string" `       |     Необязательный параметр, заголовок счётчика     |
+|   value    |       `string`        |                  Текущее значение                   |
+| onIncrease |     `() => void`      | Функция, запускаемая при клике на кнопку увеличения |
+| onDecrease |     `() => void`      | Функция, запускаемая при клике на кнопку уменьшения |
+|   styles   | `React.CSSProperties` | Необязательный параметр, для переопределения стилей |
+
+#### Примеры:
+
+```jsx
+<Counter
+  label={label}
+  value={value}
+  onIncrease={() => dispatch(increaseCounter({ id, step: COUNTER_STEP }))}
+  onDecrease={() => dispatch(decreaseCounter({ id, step: COUNTER_STEP }))}
+/>
+```
+
+## Локальный запуск
+
+Скопируйте репозиторий локально, после чего в корневой папке с проектом введите:
+
+### `npm install`
+
+Установит все требуемые для проекта зависимости.
+
+### `npm run start`
+
+Запустит проект в режиме разработки.\
+Откройте [http://localhost:3000](http://localhost:3000) для просмотра в браузере.
+
+Страница будет перезагружаться при любых изменениях.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Соберет проект в папке `build`.\
+Бандл будет собран в продакшн-режиме и оптимизирован для лучшей производительности, код минифицирован, а названия файлов включают в себя хэш.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```

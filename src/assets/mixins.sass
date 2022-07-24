@@ -1,0 +1,45 @@
+@import "./colors"
+
+@mixin resetBOM
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  & *
+    box-sizing: border-box
+
+@mixin adaptive($maxWidth)
+  @media (max-width: $maxWidth)
+    @content
+
+@mixin font($fontSize, $lineHeight, $fontWeight, $fontFamily)
+  font-size: $fontSize
+  line-height: $lineHeight
+  font-weight: $fontWeight
+  font-family: $fontFamily
+
+@mixin setColors($background, $color)
+  background: $background
+  color: $color
+
+@mixin flex
+  display: flex
+
+@mixin inlineFlex
+  display: inline-flex
+
+@mixin flex-center
+  @include flex
+  justify-content: center
+  align-items: center
+
+@mixin inlineFlex-center
+  @include flex-center
+  @include inlineFlex
+
+@mixin flex-column
+  flex-direction: column
+
+@mixin easeTransition
+  transition: ease 300ms
+  & *
+    transition: ease 300ms

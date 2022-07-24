@@ -1,0 +1,131 @@
+@import './mixins'
+
+// include fonts
+
+@font-face
+  font-family: SF Pro Display
+  src: url('./fonts/sf_pro_display/SF-Pro-Display-Regular.woff') format('woff')
+  font-weight: 400
+  font-style: normal
+  font-display: swap
+
+@font-face
+  font-family: SF Pro Display
+  src: url('./fonts/sf_pro_display/SF-Pro-Display-Medium.woff') format('woff')
+  font-weight: 500
+  font-style: normal
+  font-display: swap
+
+@font-face
+  font-family: SF Pro Display
+  src: url('./fonts/sf_pro_display/SF-Pro-Display-Semibold.woff') format('woff')
+  font-weight: 600
+  font-style: normal
+  font-display: swap
+@font-face
+
+  font-family: SF Pro Display
+  src: url('./fonts/sf_pro_display/SF-Pro-Display-Bold.woff') format('woff')
+  font-weight: 700
+  font-style: normal
+  font-display: swap
+
+// fonts general
+$SF_PRO: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif
+
+@mixin fontExtra
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+@mixin font_medium
+  font-weight: 500
+
+@mixin font_semibold
+  font-weight: 600
+
+// regular fonts
+@mixin largeTitle
+  @include font(36px, 43px, 400, $SF_PRO)
+  @include fontExtra
+
+@mixin title_1
+  @include font(24px, 29px, 400, $SF_PRO)
+  @include fontExtra
+
+@mixin title_2
+  @include font(18px, 22px, 400, $SF_PRO)
+  @include fontExtra
+
+@mixin title_3
+  @include font(16px, 19px, 400, $SF_PRO)
+  @include fontExtra
+
+@mixin font_body
+  @include font(14px, 18px, 400, $SF_PRO)
+  @include fontExtra
+
+@mixin font_subheadline
+  @include font(13px, 16px, 400, $SF_PRO)
+  @include fontExtra
+
+@mixin font_small
+  @include font(11px, 16px, 400, $SF_PRO)
+  @include fontExtra
+
+// medium fonts
+@mixin largeTitle_medium
+  @include largeTitle
+  @include font_medium
+
+@mixin title_1_medium
+  @include title_1
+  @include font_medium
+
+@mixin title_2_medium
+  @include title_2
+  @include font_medium
+
+@mixin title_3_medium
+  @include title_3
+  @include font_medium
+
+@mixin font_body_medium
+  @include font_body
+  @include font_medium
+
+@mixin font_subheadline_medium
+  @include font_subheadline
+  @include font_medium
+
+@mixin font_small_medium
+  @include font_small
+  @include font_medium
+
+// semibold fonts
+@mixin largeTitle_semibold
+  @include largeTitle
+  @include font_semibold
+
+@mixin title_1_semibold
+  @include title_1
+  @include font_semibold
+
+@mixin title_2_semibold
+  @include title_2
+  @include font_semibold
+
+@mixin title_3_semibold
+  @include title_3
+  @include font_semibold
+
+@mixin font_body_semibold
+  @include font_body
+  @include font_semibold
+
+@mixin font_subheadline_semibold
+  @include font_subheadline
+  @include font_semibold
+
+@mixin font_small_semibold
+  @include font_small
+  @include font_semibold

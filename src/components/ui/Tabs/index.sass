@@ -1,0 +1,108 @@
+@import ../../../assets/mixins
+@import ../../../assets/fonts
+@import ../../../assets/colors
+@import ../../../assets/variables
+
+$TABS_MIN_WIDTH: 375px
+$TABS_MIN_WIDTH_MOB: 320px
+
+.tabs
+  @include flex-center
+  @include font_body_semibold
+  @include easeTransition
+  @include resetBOM
+  flex-wrap: wrap
+  align-items: stretch
+  position: relative
+  user-select: none
+  border: 1px solid $secondaryBlack
+  border-radius: $DEFAULT_BORDER_RADIUS
+  width: 100%
+  min-width: $TABS_MIN_WIDTH
+  @include adaptive($MOBILE_WIDTH)
+    min-width: $TABS_MIN_WIDTH_MOB
+  &__item
+    @include flex-center
+    position: relative
+    padding: 9px 50px
+    text-align: center
+    flex: 1
+    @include adaptive($MOBILE_WIDTH)
+      flex-basis: 100%
+    &:hover
+      cursor: pointer
+      .tabs
+        &__substrate
+          background: $secondary
+        &__label
+          color: $trueWhite
+    &:active,
+    &:focus
+      .tabs
+        &__substrate
+          background: darken($secondary, 10%)
+        &__label
+          color: $trueWhite
+    &:first-child
+      left: -1px
+      @include adaptive($MOBILE_WIDTH)
+        left: 0
+    &:last-child
+      left: 1px
+      @include adaptive($MOBILE_WIDTH)
+        left: 0
+    &_active
+      &:hover,
+      &:active,
+      &:focus
+        color: $trueWhite
+        .tabs
+          &__substrate
+            background: $primary
+      .tabs
+        &__label
+          color: $trueWhite
+        &__substrate
+          background: $primary
+          @include adaptive($MOBILE_WIDTH)
+            width: calc(100% + 2px)
+            left: -1px
+
+  //children
+  &__label
+    position: relative
+    z-index: 2
+    color: $gray_500
+  &__substrate
+    position: absolute
+    z-index: 1
+    width: calc(100% + 1px)
+    height: calc(100% + 2px)
+    left: 0
+    top: -1px
+    border-radius: $DEFAULT_BORDER_RADIUS
+
+  //variants
+  &_secondary
+    .tabs
+      &__item
+        &:hover,
+        &:active,
+        &:focus
+          .tabs
+            &__label
+              color: $blackLight
+            &__substrate
+              background: $trueWhite
+              border: 1px solid $secondaryBlack
+              box-shadow: $shadow_superAbove
+        &_active
+          .tabs
+            &__label
+              color: $blackLight
+            &__substrate
+              background: $trueWhite
+              border: 1px solid $secondaryBlack
+              box-shadow: $shadow_superAbove
+      &__substrate
+        border: 1px solid transparent

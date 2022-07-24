@@ -1,0 +1,26 @@
+@import ./fonts
+@import ./mixins
+@import ./colors
+
+body
+  margin: 0
+  font-family: $SF_PRO
+
+.App
+  min-height: 100vh
+  padding: 15px
+  box-sizing: border-box
+  &_dark
+    background: $secondaryBlack
+  &__buttons,
+  &__tabs,
+  &__inputs
+    @include flex-center
+    @include flex-column
+    gap: 15px
+    max-width: 900px
+    margin: 0 auto
+  &__tabs
+    margin-bottom: 30px
+  &__title
+    margin: 0

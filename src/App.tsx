@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import Buttons from "./components/Buttons";
+import Inputs from "./components/Inputs";
+import TabsContainer from "./components/TabsContainer";
+import { RootState } from "./redux/store";
 
 function App() {
+  const { activeTab } = useSelector((state: RootState) => state.components);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TabsContainer />
+      {(activeTab === "0" || activeTab === "1") && <Buttons />}
+      {(activeTab === "2" || activeTab === "3") && <Inputs />}
     </div>
   );
 }

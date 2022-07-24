@@ -1,0 +1,116 @@
+@import ../../../assets/mixins
+@import ../../../assets/fonts
+@import ../../../assets/colors
+@import ../../../assets/variables
+
+$INPUT_MAX_WIDTH: 320px
+$INPUT_BORDER_RAIUS: 4px
+
+.input
+  @include font_body_medium
+  width: 100%
+  border: none
+  outline: none
+  color: $blackLight
+  caret-color: $primary
+  &::placeholder
+    @include font_body_medium
+    color: $gray_500
+
+  //states
+  &:focus,
+  &:active
+    &::placeholder
+      color: $gray_400
+  &:disabled
+    color: $gray_400
+    background: none
+    cursor: not-allowed
+    &::placeholder
+      color: $gray_400
+
+  &__wrapper
+    @include resetBOM
+    width: 100%
+    max-width: $INPUT_MAX_WIDTH
+  &__container
+    @include inlineFlex-center
+    gap: 8px
+    width: 100%
+    border: 1px solid $secondaryBlack
+    border-radius: $INPUT_BORDER_RAIUS
+    padding: 10px 16px
+
+    //variants
+    &_secondary
+      border-top: none
+      border-left: none
+      border-right: none
+      border-radius: 0
+      padding: 10px 0
+      &.input
+        &__container
+          &_error
+            border-top: none
+            border-left: none
+            border-right: none
+          &_success
+            border-top: none
+            border-left: none
+            border-right: none
+          &_disabled
+            .input
+              &::placeholder
+                color: $secondaryBlack
+
+    &_error
+      border: 1px solid $other_rise
+      .input
+        color: $other_rise
+        &::placeholder
+          color: $other_rise
+        &__icon
+          path
+            fill: $other_rise
+
+    &_success
+      border: 1px solid $green
+      .input
+        color: $green
+        &::placeholder
+          color: $green
+        &__icon
+          path
+            fill: $green
+
+    &_disabled
+      background: transparent
+      cursor: not-allowed
+      user-select: none
+      .input
+        &__label
+          cursor: not-allowed
+
+  // children
+  &__icon
+    @include flex-center
+    flex-basis: 18px
+    aspect-ratio: 1
+    cursor: pointer
+    path
+      fill: $gray_400
+  &__sign
+    @include font_subheadline_medium
+    text-align: left
+    margin-top: 8px
+    &_error
+      color: $other_rise
+    &_success
+      color: $green
+  &__label
+    @include font_body
+    padding: 3px 8px
+    color: $primary
+    border-left: 1px solid $secondaryBlack
+    user-select: none
+    cursor: pointer

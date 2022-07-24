@@ -1,0 +1,171 @@
+@import ../../../assets/mixins
+@import ../../../assets/fonts
+@import ../../../assets/colors
+@import ../../../assets/variables
+
+$BUTTON_MAX_WIDTH: 325px
+$BUTTON_MIN_WIDTH: 135px
+$BUTTON_MIN_HEIGHT: 50px
+
+.button
+  @include resetBOM
+  @include inlineFlex-center
+  @include flex-column
+  @include title_3_medium
+  @include easeTransition
+  position: relative
+  overflow: hidden
+  user-select: none
+  width: 100%
+  max-width: $BUTTON_MAX_WIDTH
+  min-width: $BUTTON_MIN_WIDTH
+  min-height: $BUTTON_MIN_HEIGHT
+  padding: 8px 16px
+  border-radius: $DEFAULT_BORDER_RADIUS
+
+  // states
+  &:hover
+    cursor: pointer
+  &_disabled
+    @include setColors($gray_300, $gray_400)
+    cursor: not-allowed
+    .button__filter
+      path
+        fill: $gray_400
+
+  // variants
+  &_primary
+    @include setColors($primary, $trueWhite)
+    &:hover
+      background: darken($primary, 10%)
+    &:active,
+    &:focus
+      background: darken($primary, 15%)
+    &.button_disabled
+      @extend .button_disabled
+      @include setColors($gray_300, $gray_400)
+
+  &_secondary
+    @include setColors($trueWhite, $primary)
+    border: 1px solid $secondary
+    &:hover
+      @include setColors($secondary, $trueWhite)
+      .button
+        &__hrobbler
+          path
+            stroke: $trueWhite
+        &__filter
+          path
+            fill: $trueWhite
+        &__filters
+          @extend .button__filters
+    &:active,
+    &:focus
+      background: darken($secondary, 15%)
+      border: 1px solid darken($secondary, 15%)
+    &.button_disabled
+      @extend .button_disabled
+      @include setColors($trueWhite, $gray_400)
+      border: 1px solid $gray_400
+    .button
+      &__hrobbler
+        path
+          stroke: $secondary
+      &__filter
+        path
+          fill: $secondary
+      &__filters
+        @include setColors($primary, $trueWhite)
+
+  &_round
+    width: auto
+    padding: 10px 16px
+    border-radius: 1000px
+    box-shadow: $shadow_bottom
+
+  &_round-primary
+    @extend .button_primary
+    @extend .button_round
+    &.button_disabled
+      @include setColors($gray_100, $gray_400)
+      .button__filter
+        path
+          fill: $gray_400
+
+  &_round-secondary
+    @extend .button_secondary
+    @extend .button_round
+    border: none
+    color: $blackLight
+    &:hover,
+    &:focus,
+    &:active
+      border: none
+    .button__filter
+      path
+        fill: $blackLight
+    &.button_disabled
+      @include setColors($trueWhite, $gray_400)
+      border: none
+      .button__filter
+        path
+          fill: $gray_400
+
+  &_progress
+    @extend .button_primary
+    @include setColors($greenLight, $trueWhite)
+    &:hover
+      background: darken($greenLight, 10%)
+      .button__progressLine
+        background: darken($green, 10%)
+    &:focus,
+    &:active
+      background: darken($greenLight, 15%)
+      .button__progressLine
+        background: darken($green, 15%)
+    &.button_disabled
+      &:hover,
+      &:active,
+      &:focus
+        @extend .button_disabled
+
+  // children
+  &__label
+    @include flex-center
+    position: relative
+    z-index: 2
+    gap: 8px
+  &__subtitle
+    position: relative
+    z-index: 2
+    @include font_subheadline
+  &__hrobbler
+    @include flex-center
+    transform-origin: center center
+    animation: circle 2.5s infinite ease-in-out both
+    path
+      stroke: $trueWhite
+  &__filter
+    @include flex-center
+    path
+      fill: $trueWhite
+  &__filters
+    @include inlineFlex-center
+    @include font_subheadline
+    @include setColors($trueWhite, $primary)
+    width: 24px
+    aspect-ratio: 1
+    border-radius: 50%
+  &__progressLine
+    position: absolute
+    z-index: 1
+    left: 0
+    top: 0
+    height: 100%
+    background: $green
+
+@keyframes circle
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
