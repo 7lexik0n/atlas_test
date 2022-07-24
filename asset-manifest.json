@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/atlas_test/static/css/main.a13872d7.css",
+    "main.js": "/atlas_test/static/js/main.efbaab11.js",
+    "static/media/SF-Pro-Display-Semibold.woff": "/atlas_test/static/media/SF-Pro-Display-Semibold.d562c64f0f1a873be36d.woff",
+    "static/media/SF-Pro-Display-Medium.woff": "/atlas_test/static/media/SF-Pro-Display-Medium.7ff35c82f5b24bc69ad0.woff",
+    "static/media/SF-Pro-Display-Bold.woff": "/atlas_test/static/media/SF-Pro-Display-Bold.59b382e465663023c193.woff",
+    "static/media/SF-Pro-Display-Regular.woff": "/atlas_test/static/media/SF-Pro-Display-Regular.800b8a27efcff5b8ab4b.woff",
+    "static/media/cross.svg": "/atlas_test/static/media/cross.510e8ea4c85927875fcc0ca40b50e3c5.svg",
+    "static/media/throbber.svg": "/atlas_test/static/media/throbber.459a707e7772ed0a363eb4c8f17e0f87.svg",
+    "index.html": "/atlas_test/index.html",
+    "static/media/mark.svg": "/atlas_test/static/media/mark.a1b23fc5c4d453d20c693ad7ea0f69fe.svg",
+    "static/media/filter.svg": "/atlas_test/static/media/filter.d28c0a170f0d3f916653dbd40d5f3e05.svg",
+    "main.a13872d7.css.map": "/atlas_test/static/css/main.a13872d7.css.map",
+    "main.efbaab11.js.map": "/atlas_test/static/js/main.efbaab11.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a13872d7.css",
+    "static/js/main.efbaab11.js"
+  ]
+}
